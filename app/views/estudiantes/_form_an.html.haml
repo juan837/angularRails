@@ -1,0 +1,19 @@
+.row
+  .col-md-2
+    Nombre:
+  .col-md-5
+    %input{type: 'text', "ng-model" => 'nuevoEstudiante.nombre'}
+.row
+  .col-md-2
+    Apellido:
+  .col-md-5
+    %input{type: 'text', "ng-model" => 'nuevoEstudiante.apellido'}
+.row
+  .col-md-2
+    Edad:
+  .col-md-5
+    %input{type: 'text', "ng-model" => 'nuevoEstudiante.edad'}
+%br
+.row
+  .col-md-2.col-md-offset-4
+    = button_tag 'Agregar', type: 'button', class: 'btn btn-success btn-block', 'ng-click' => 'AgregarForm()'

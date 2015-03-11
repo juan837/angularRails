@@ -1,0 +1,16 @@
+.page-header
+  = link_to estudiantes_path, :class => 'btn btn-default' do
+    %span.glyphicon.glyphicon-list-alt
+    Back
+  = link_to edit_estudiante_path(@estudiante), :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-pencil
+    Edit
+  %h1 Show estudiante
+
+%dl.dl-horizontal
+  %dt Nombre:
+  %dd= @estudiante.nombre
+  %dt Apellido:
+  %dd= @estudiante.apellido
+  %dt Edad:
+  %dd= @estudiante.edad

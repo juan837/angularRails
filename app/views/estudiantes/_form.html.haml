@@ -1,0 +1,27 @@
+= form_for @estudiante, :html => { :class => "form-horizontal", :role => "form" } do |f|
+  -if @estudiante.errors.any?
+    .alert.alert-danger.alert-dismissable{:role => "alert"}
+      %button.close{:type => "button", :data => {:dismiss => "alert"} }
+        span{:aria => {:hidden => "true"} } &times;
+        span.sr-only Close
+      %h4= "#{pluralize(@estudiante.errors.count, "error")} prohibited this estudiante from being saved:"
+
+      %ul
+        - @estudiante.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :nombre, :class => 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :nombre, :class => 'form-control'
+  .form-group
+    = f.label :apellido, :class => 'col-md-2 control-label'
+    .col-md-10
+      = f.text_field :apellido, :class => 'form-control'
+  .form-group
+    = f.label :edad, :class => 'col-md-2 control-label'
+    .col-md-10
+      = f.number_field :edad, :class => 'form-control'
+  .form-group
+    .col-md-offset-2.col-md-10
+      = f.submit :class => 'btn btn-primary'

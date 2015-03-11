@@ -1,0 +1,51 @@
+.waraper{'ng-controller' => 'EstudianteListCtr'}
+  = render 'estudiantes/modal'
+  .page-header
+    -#= link_to new_estudiante_path, :class => 'btn btn-primary' do
+    -#  %span.glyphicon.glyphicon-plus
+    -#  New Estudiante
+    .row
+      .col-md-3
+        = button_tag 'Nuevo Estudiante (Modal)', type: 'button', class: 'btn btn-success btn-block', 'ng-click' => 'NuevoModal()'
+    .row
+      .col-md-3
+        = button_tag 'Nuevo Estudiante (Form Hide)', type: 'button', class: 'btn btn-success btn-block', 'ng-click' => 'NuevoForm()','ng-hide' => 'formVisibility'
+    .row
+      .col-md-12{ 'ng-show' => 'formVisibility'}
+        = render 'estudiantes/form_an'
+    %h1 Lista de Estudiantes
+    .row
+      .col-md-2
+        %label
+          Buscar por nombre:
+      .col-md-3
+        %input{type: 'text', 'ng-model' => 'buscar.nombre'}
+  .table-responsive
+    %table.table.table-striped.table-bordered.table-hover
+      %thead
+        %tr
+          %th Nombre
+          %th Apellido
+          %th Edad
+          -#%th
+          -#%th
+          -#%th
+      %tbody
+        %tr{"ng-hide" => "estudiantes.length"}
+          %td{:colspan => "3"} No hay estudiantes.
+          %tr{"ng-repeat" => "estudiante in estudiantes | filter:buscar ", "ng-show" => "estudiantes.length"}
+            %td
+              {{estudiante.nombre}}
+            %td
+              {{estudiante.apellido}}
+            %td
+              {{estudiante.edad}}
+      -#%tbody
+        - @estudiantes.each do |estudiante|
+          %tr
+            %td= estudiante.nombre
+            %td= estudiante.apellido
+            %td= estudiante.edad
+            %td= link_to 'Show', estudiante
+            %td= link_to 'Edit', edit_estudiante_path(estudiante)
+            %td= link_to 'Destroy', estudiante, :data => { confirm: 'Are you sure?' }, :method => :delete
